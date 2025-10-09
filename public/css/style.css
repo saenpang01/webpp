@@ -1,4 +1,743 @@
 /* ==========================================================================
+   1. CSS Variables & Global Styles
+   ========================================================================== */
+:root {
+    --primary-color: #FF6A13;
+    --secondary-color: #002B49;
+    --tertiary-color: #464646;
+    --text-color: #212121;
+    --text-light: #FFFFFF;
+    --accent-color: #F57F00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ==========================================================================
+   2. Header & Navbar Styling (Latest Version)
+   ========================================================================== */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar {
+    background: transparent;
+    padding: 1.5rem 0;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: var(--secondary-color);
+    padding: 1rem 0;
+    position: fixed;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.nav-logo span {
+    font-weight: 400;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 1.5rem;
+    position: relative;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--secondary-color);
+    list-style: none;
+    padding: 0.5rem 0;
+    border-radius: 4px;
+    min-width: 200px;
+    border-top: 2px solid var(--primary-color);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    display: block;
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--primary-color);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-light);
+}
+
+
+/* ==========================================================================
+   3. Hero Section Styling (Latest Version)
+   ========================================================================== */
+#hero {
+    position: relative;
+    height: 100vh;
+    color: var(--text-light);
+    flex-direction: column;
+}
+
+.hero-bg-img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-bg-img-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+}
+
+.hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    align-items: flex-start; /* <<< เพิ่มบรรทัดนี้ */
+}
+.hero-content-main {
+    text-align: left;
+}
+
+.hero-headline {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subheadline {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.hero-content-footer {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Base Button Styles */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-hero-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(255, 106, 19, 0.4);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-hero-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: -1;
+}
+
+.btn-hero-primary:hover::before {
+    left: 100%;
+}
+
+.btn-hero-primary:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 106, 19, 0.6);
+}
+
+
+/* ==========================================================================
+   4. General Section Styles
+   ========================================================================== */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--tertiary-color);
+    margin-bottom: 3rem;
+}
+
+
+/* ==========================================================================
+   5. Map Section Styling
+   ========================================================================== */
+/* ========== 5. Map Section Styling (New Overlay Version) ========== */
+#map {
+    padding: 4rem 0;
+    background-color: #f4f4f4;
+}
+
+.map-wrapper {
+    position: relative; /* เป็นตัวอ้างอิงตำแหน่งให้ Tooltip */
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.map-container {
+    position: relative; /* เป็นตัวอ้างอิงตำแหน่งให้ SVG Overlay */
+    width: 100%;
+}
+
+.map-container img {
+    width: 100%;
+    display: block; /* ลบช่องว่างใต้ภาพ */
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.map-overlay path {
+    fill: transparent; /* ทำให้ Path โปร่งใสในตอนแรก */
+    stroke: none;
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.map-overlay path:hover {
+    fill: rgba(255, 106, 19, 0.6); /* สีส้มโปร่งแสงเมื่อ Hover */
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    pointer-events: none; /* ทำให้เมาส์คลิกทะลุได้ */
+    white-space: nowrap;
+    transform: translate(-50%, -120%); /* จัดตำแหน่งให้อยู่เหนือเคอร์เซอร์ */
+    z-index: 100;
+    display: none; /* ซ่อนไว้ก่อน */
+}
+
+
+/* ==========================================================================
+   6. Goals Section Styling
+   ========================================================================== */
+#goals {
+    position: relative;
+    padding: 5rem 0;
+    background-image: url('/public/images/goals01.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-light);
+}
+
+#goals::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(233, 110, 9, 0.753);
+    z-index: 1;
+    opacity: 0.7;
+}
+
+#goals .container {
+    position: relative;
+    z-index: 2;
+}
+
+.goals-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.goals-title {
+    font-size: 2.7rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--text-light); /* Override color for this section */
+}
+
+.goals-list {
+    list-style: none;
+    text-align: left;
+}
+
+.goals-list li {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.goals-list li span {
+    margin-left: 1rem;
+}
+
+
+/* ==========================================================================
+   7. Districts Section Styling
+   ========================================================================== */
+#districts {
+    padding: 4rem 0;
+}
+
+.districts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.district-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.district-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.district-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content h3 {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+}
+
+.btn-card {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-card:hover {
+    background-color: var(--accent-color);
+}
+
+
+/* ==========================================================================
+   8. News & Activities Section Styling
+   ========================================================================== */
+#news {
+    padding: 4rem 0;
+    background-color: #f4f4f4;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.news-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card .card-content {
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.news-category {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.news-card h3 {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.news-excerpt {
+    font-size: 0.95rem;
+    color: var(--tertiary-color);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.read-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    align-self: flex-end;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   9. Footer Styling
+   ========================================================================== */
+footer {
+    background-color: var(--secondary-color);
+    color: #a9b3bb;
+    padding: 3rem 0 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h4 {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-column p {
+    line-height: 1.8;
+}
+
+.footer-column.links ul {
+    list-style: none;
+}
+
+.footer-column.links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column.links a {
+    color: #a9b3bb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column.links a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons a {
+    color: #a9b3bb;
+    text-decoration: none;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid #2e4a62;
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+
+/* ==========================================================================
+   10. Responsive Media Queries
+   ========================================================================== */
+@media(max-width: 992px) {
+    .districts-grid,
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%; /* ซ่อนเมนูไว้นอกจอด้านซ้าย */
+        top: 0;
+        flex-direction: column;
+        background-color: var(--secondary-color);
+        width: 100%;
+        height: 100vh; /* สูงเต็มจอ */
+        text-align: center;
+        transition: 0.3s;
+        padding-top: 5rem;
+    }
+
+    .nav-menu.active {
+        left: 0; /* เมื่อมีคลาส active ให้เลื่อนกลับเข้ามาในจอ */
+    }
+
+    .nav-item {
+        margin: 1.5rem 0; /* ปรับระยะห่างเมนูในแนวตั้ง */
+    }
+
+    .hamburger {
+        display: block;
+        z-index: 101;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hero-headline {
+        font-size: 2.5rem;
+    }
+
+    .hero-subheadline {
+        font-size: 1.5rem;
+    }
+
+    .districts-grid,
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   11. Inner Page Styles (About, Contact, etc.)
+   ========================================================================== */
+
+/* Page Header */
+.page-header {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 10rem 0 4rem;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #a9b3bb;
+}
+
+/* About Page Content */
+.about-content {
+    padding: 4rem 0;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* แบ่งเนื้อหา 2 ส่วน รูป 1 ส่วน */
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block; /* ทำให้เส้นใต้พอดีกับข้อความ */
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--tertiary-color);
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Responsive for About Page */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr; /* เปลี่ยนเป็น 1 คอลัมน์ */
+    }
+}
+
+
+/* ==========================================================================
    12. Contact Page & Form Styling
    ========================================================================== */
 .contact-form-section {
