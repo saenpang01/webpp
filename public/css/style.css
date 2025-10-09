@@ -15,6 +15,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
 
 body {
     font-family: 'Kanit', sans-serif;
@@ -22,7 +28,7 @@ body {
 }
 
 main {
-    padding-top: 80px; /* สร้างพื้นที่ว่างด้านบนเท่ากับความสูงของ Navbar โดยประมาณ */
+    padding-top: 0 ; /* สร้างพื้นที่ว่างด้านบนเท่ากับความสูงของ Navbar โดยประมาณ */
 }
 
 .container {
@@ -43,16 +49,21 @@ header {
 }
 
 .navbar {
-    background: transparent;
+    background: linear-gradient(to bottom, rgba(161, 158, 158, 0.692), transparent);
     padding: 1.5rem 0;
     transition: background-color 0.3s ease, padding 0.3s ease;
 }
 
 .navbar.scrolled {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     padding: 1rem 0;
     position: fixed;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+    width: 100%; /* กำหนดให้ความกว้างเต็มหน้าจอเสมอ */
+    top: 0;      /* กำหนดให้อยู่บนสุดของหน้าจอ */
+    left: 0;     /* กำหนดให้อยู่ชิดซ้ายสุดของหน้าจอ */
+    /* ======================= */
 }
 
 .navbar .container {
@@ -148,6 +159,8 @@ header {
     height: 100vh;
     color: var(--text-light);
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-bg-img-container {
@@ -182,10 +195,11 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 150px;
     padding-bottom: 50px;
-    align-items: flex-start; /* <<< เพิ่มบรรทัดนี้ */
+    align-items: flex-start; 
+    padding-top: 120px ;
 }
+
 .hero-content-main {
     text-align: left;
 }
@@ -193,6 +207,7 @@ header {
 .hero-headline {
     font-size: 3.5rem;
     font-weight: 700;
+    margin-top: 0;
     margin-bottom: 0.5rem;
 }
 
@@ -490,7 +505,8 @@ header {
 .news-card img {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: #f0f0f0;
 }
 
 .news-card .card-content {
@@ -831,4 +847,8 @@ footer {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+section#hero h1.hero-headline {
+    margin-top: 0;
 }
