@@ -1,0 +1,91 @@
+/* ==========================================================================
+   12. Contact Page & Form Styling
+   ========================================================================== */
+.contact-form-section {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+}
+
+.report-form {
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+}
+
+.report-form h2 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--tertiary-color);
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+}
+
+#get-location-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#get-location-btn:hover {
+    background-color: #001f36;
+}
+
+#get-location-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.location-status {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.form-status-message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.status-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
