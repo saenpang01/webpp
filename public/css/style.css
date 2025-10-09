@@ -21,6 +21,10 @@ body {
     color: var(--text-color);
 }
 
+main {
+    padding-top: 80px; /* สร้างพื้นที่ว่างด้านบนเท่ากับความสูงของ Navbar โดยประมาณ */
+}
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
