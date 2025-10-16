@@ -1,0 +1,78 @@
+/* ==========================================================================
+   9. Footer Styling
+   ========================================================================== */
+footer {
+    background-color: var(--secondary-color);
+    color: #a9b3bb;
+    padding: 3rem 0 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h4 {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-column p {
+    line-height: 1.8;
+}
+
+.footer-column.links ul {
+    list-style: none;
+}
+
+.footer-column.links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-column.links a {
+    color: #a9b3bb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column.links a:hover {
+    color: var(--primary-color);
+}
+
+.social-icons a {
+    color: #a9b3bb;
+    text-decoration: none;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid #2e4a62;
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+}

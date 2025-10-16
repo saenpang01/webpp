@@ -1,0 +1,28 @@
+/* ==========================================================================
+   1. CSS Variables & Global Styles
+   ========================================================================== */
+:root {
+    --primary-color: #FF6A13;
+    --secondary-color: #002B49;
+    --tertiary-color: #464646;
+    --text-color: #212121;
+    --text-light: #FFFFFF;
+    --accent-color: #F57F00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}

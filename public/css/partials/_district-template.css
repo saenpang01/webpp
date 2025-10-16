@@ -1,0 +1,114 @@
+/* ==========================================================================
+   District Page Template Styles
+   ========================================================================== */
+
+/* Problem & Solution Section */
+.problem-solution-section {
+    padding: 4rem 0;
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.problem-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.problem-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #fff3ed;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.problem-header i {
+    font-size: 1.5rem;
+    color: #e65100; /* Darker Orange */
+}
+
+.problem-header h3 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.problem-content {
+    padding: 1.5rem;
+}
+
+.problem-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--tertiary-color);
+}
+
+.solution-content {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed #ccc;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.solution-content i {
+    font-size: 1.5rem;
+    color: #2e7d32; /* Green */
+    margin-top: 5px;
+}
+
+/* Line CTA Section */
+.line-cta-section {
+    padding: 4rem 0;
+    background-color: var(--secondary-color);
+    text-align: center;
+    color: var(--text-light);
+}
+
+.line-cta-section .fa-line {
+    font-size: 4rem;
+    color: #06C755; /* LINE Green */
+    margin-bottom: 1rem;
+}
+
+.line-cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.line-cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-line {
+    background-color: #06C755;
+    color: white;
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-line:hover {
+    background-color: #05a546;
+    transform: translateY(-3px);
+}
