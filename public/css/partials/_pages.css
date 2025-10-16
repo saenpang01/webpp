@@ -1,36 +1,30 @@
 /* ==========================================================================
-   Inner Page Styles (About, Contact, etc.)
+   6. Inner Page Styles (About, Contact, etc.)
    ========================================================================== */
-/* Page Header */
 .page-header {
     background-color: var(--secondary-color);
     color: var(--text-light);
     padding: 10rem 0 4rem;
     text-align: center;
 }
-
 .page-header h1 {
     font-size: 3rem;
     font-weight: 700;
 }
-
 .page-header p {
     font-size: 1.2rem;
     color: #a9b3bb;
 }
 
-/* About Page Content */
 .about-content {
     padding: 4rem 0;
 }
-
 .about-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
     align-items: center;
 }
-
 .about-text h2 {
     font-size: 2rem;
     color: var(--secondary-color);
@@ -39,26 +33,22 @@
     border-bottom: 2px solid var(--primary-color);
     display: inline-block;
 }
-
 .about-text p {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
     color: var(--tertiary-color);
 }
-
 .about-image img {
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* Contact Page & Form Styling */
 .contact-form-section {
     padding: 4rem 0;
     background-color: #f9f9f9;
 }
-
 .report-form {
     max-width: 700px;
     margin: auto;
@@ -67,24 +57,20 @@
     border-radius: 8px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.1);
 }
-
 .report-form h2 {
     text-align: center;
     color: var(--secondary-color);
     margin-bottom: 2rem;
 }
-
 .form-group {
     margin-bottom: 1.5rem;
 }
-
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--tertiary-color);
 }
-
 .form-group input[type="text"],
 .form-group select,
 .form-group textarea {
@@ -95,7 +81,6 @@
     font-size: 1rem;
     font-family: 'Kanit', sans-serif;
 }
-
 #get-location-btn {
     width: 100%;
     padding: 0.8rem;
@@ -108,35 +93,29 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 #get-location-btn:hover {
     background-color: #001f36;
 }
-
 #get-location-btn:disabled {
     background-color: #6c757d;
     cursor: not-allowed;
 }
-
 .location-status {
     margin-top: 0.5rem;
     font-size: 0.9rem;
     text-align: center;
 }
-
 .form-status-message {
     padding: 1rem;
     margin-bottom: 1.5rem;
     border-radius: 5px;
     text-align: center;
 }
-
 .status-success {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
 }
-
 .status-error {
     background-color: #f8d7da;
     color: #721c24;

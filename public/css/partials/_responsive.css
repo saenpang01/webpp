@@ -1,5 +1,5 @@
 /* ==========================================================================
-   10. Responsive Media Queries
+   8. Responsive Media Queries
    ========================================================================== */
 @media(max-width: 992px) {
     .districts-grid,
@@ -57,7 +57,7 @@
     .news-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .about-grid {
         grid-template-columns: 1fr;
     }

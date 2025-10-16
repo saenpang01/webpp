@@ -6,6 +6,8 @@
     height: 100vh;
     color: var(--text-light);
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-bg-img-container {
@@ -40,10 +42,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 150px;
     padding-bottom: 50px;
     align-items: flex-start;
+    padding-top: 120px ;
 }
+
 .hero-content-main {
     text-align: left;
 }
@@ -51,6 +54,7 @@
 .hero-headline {
     font-size: 3.5rem;
     font-weight: 700;
+    margin-top: 0;
     margin-bottom: 0.5rem;
 }
 

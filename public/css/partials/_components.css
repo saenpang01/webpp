@@ -1,7 +1,6 @@
 /* ==========================================================================
-   Reusable Components (Buttons, Cards, etc.)
+   4. Reusable Components (Buttons, Cards)
    ========================================================================== */
-/* Base Button Styles */
 .btn {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -45,4 +44,18 @@
     background-color: var(--accent-color);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(255, 106, 19, 0.6);
+}
+
+.btn-card {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-card:hover {
+    background-color: var(--accent-color);
 }

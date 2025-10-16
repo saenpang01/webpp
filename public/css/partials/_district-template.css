@@ -2,6 +2,63 @@
    District Page Template Styles
    ========================================================================== */
 
+/* New Hero Section for District Page */
+.new-hero-section {
+    background-color: #f4f7f6;
+    padding-top: 120px;
+    padding-bottom: 4rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.new-hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero-left-content h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    line-height: 1.2;
+}
+
+.hero-left-content p {
+    font-size: 1.3rem;
+    color: var(--tertiary-color);
+    margin: 1rem 0 2rem;
+}
+
+.hero-right-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero-info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.info-card h4 {
+    font-size: 1rem;
+    color: var(--tertiary-color);
+    margin-bottom: 0.5rem;
+}
+
+.info-card span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+
 /* Problem & Solution Section */
 .problem-solution-section {
     padding: 4rem 0;
@@ -36,7 +93,7 @@
 
 .problem-header i {
     font-size: 1.5rem;
-    color: #e65100; /* Darker Orange */
+    color: #e65100;
 }
 
 .problem-header h3 {
@@ -66,7 +123,7 @@
 
 .solution-content i {
     font-size: 1.5rem;
-    color: #2e7d32; /* Green */
+    color: #2e7d32;
     margin-top: 5px;
 }
 
@@ -80,7 +137,7 @@
 
 .line-cta-section .fa-line {
     font-size: 4rem;
-    color: #06C755; /* LINE Green */
+    color: #06C755;
     margin-bottom: 1rem;
 }
 

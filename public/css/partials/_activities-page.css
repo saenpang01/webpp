@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Activities Page Specific Styles
+   ========================================================================== */
+.activities-section {
+    padding: 4rem 0;
+}
+
+.loading-message {
+    font-size: 1.2rem;
+    color: var(--tertiary-color);
+    text-align: center;
+    width: 100%;
+}
+
+/* Enhancing the news-card for this page */
+.news-card .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This will push footer to the bottom */
+    flex-grow: 1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+}

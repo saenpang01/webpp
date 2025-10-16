@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const newsGrid = document.querySelector(".news-grid");
     if (newsGrid) {
         // *** แก้ไขตรงนี้: เปลี่ยนเป็น Relative Path ***
-        fetch('/api/posts') 
+        fetch('http://localhost:3001/api/posts') 
             .then(response => response.json())
             .then(posts => {
                 newsGrid.innerHTML = ''; 
