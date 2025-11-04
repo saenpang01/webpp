@@ -14,7 +14,6 @@ const config = {
 const client = new line.Client(config);
 
 // State Management: ใช้สำหรับจดจำว่า User แต่ละคนคุยถึงขั้นตอนไหนแล้ว
-// ข้อควรระวัง: ข้อมูลจะหายไปหากเซิร์ฟเวอร์รีสตาร์ท สำหรับโปรเจกต์นี้ถือว่าเพียงพอ
 const conversationState = new Map();
 
 // ฟังก์ชันสำหรับดาวน์โหลดและบันทึกรูปภาพ
@@ -22,7 +21,8 @@ const saveImageFromLine = async (messageId) => {
     try {
         const stream = await client.getMessageContent(messageId);
         const filename = `${Date.now()}.jpg`;
-        const uploadsDir = path.join(__dirname, '../../uploads');
+        // แก้ไข Path ให้ถูกต้อง อ้างอิงจากโฟลเดอร์ server/ ไปยัง ../uploads/
+        const uploadsDir = path.join(__dirname, '../../uploads'); 
         const filePath = path.join(uploadsDir, filename);
 
         // สร้างโฟลเดอร์ uploads หากยังไม่มี
@@ -74,7 +74,7 @@ async function handleEvent(event) {
             if (event.message.type === 'text') {
                 userState.data.content = event.message.text;
                 userState.state = 'awaiting_image';
-                return client.replyMessage(event.replyToken, { type: 'text', text: 'เยี่ยมเลย! ต่อไปกรุณา "อัปโหลดรูปภาพ" ครับ:' });
+                return client.replyMessage(event.replyToken, { type: 'text', text: 'เยี่ยมเลย! ต่อไปกรุณา "อัปโหลดรูปภาพหน้าปก" (1 รูป):' });
             }
             break;
 
@@ -83,7 +83,7 @@ async function handleEvent(event) {
                 const imageUrl = await saveImageFromLine(event.message.id);
                 userState.data.image_url = imageUrl;
                 userState.state = 'awaiting_category';
-                return client.replyMessage(event.replyToken, { type: 'text', text: 'รูปสวยมาก! สุดท้ายนี้ "หมวดหมู่" ของข่าวคืออะไรครับ?' });
+                return client.replyMessage(event.replyToken, { type: 'text', text: 'รูปสวยมาก! "หมวดหมู่" ของข่าวคืออะไรครับ? เช่น ลงพื้นที่,ประชุม,กิจกรรม ' });
             } else {
                  return client.replyMessage(event.replyToken, { type: 'text', text: 'กรุณาอัปโหลดเป็นรูปภาพเท่านั้นครับ' });
             }
@@ -92,12 +92,29 @@ async function handleEvent(event) {
         case 'awaiting_category':
             if (event.message.type === 'text') {
                 userState.data.category = event.message.text;
+                userState.state = 'awaiting_album_link'; // <<< 1. เปลี่ยน state ถัดไป
+                return client.replyMessage(event.replyToken, { type: 'text', text: 'สุดท้ายนี้ กรุณาส่ง "ลิงก์อัลบั้มเต็ม" (Google Drive/Photos) ครับ\n(หากไม่มี ให้พิมพ์ "ข้าม")' });
+            }
+            break;
+
+        // <<< 2. เพิ่ม State ใหม่สำหรับรับลิงก์
+        case 'awaiting_album_link':
+            if (event.message.type === 'text') {
+                if (event.message.text.toLowerCase() === 'ข้าม' || event.message.text.toLowerCase() === 'skip') {
+                    userState.data.album_url = null;
+                } else {
+                    userState.data.album_url = event.message.text;
+                }
                 userState.state = 'awaiting_confirmation';
-
+                
                 // สร้างข้อความสรุป
-                const summary = `กรุณาตรวจสอบข้อมูล:\n\n- หัวข้อ: ${userState.data.title}\n- เนื้อหา: ${userState.data.content.substring(0, 50)}...\n- รูปภาพ: (อัปโหลดแล้ว)\n- หมวดหมู่: ${userState.data.category}`;
+                const summary = `กรุณาตรวจสอบข้อมูล:
+- หัวข้อ: ${userState.data.title}
+- เนื้อหา: ${userState.data.content.substring(0, 50)}...
+- รูปภาพ: (อัปโหลดแล้ว)
+- หมวดหมู่: ${userState.data.category}
+- ลิงก์อัลบั้ม: ${userState.data.album_url || 'ไม่มี'}`; // <<< 3. เพิ่มลิงก์ในสรุป
 
-                // ส่งข้อความสรุปพร้อมปุ่มยืนยัน
                 return client.replyMessage(event.replyToken, {
                     type: 'text',
                     text: summary,
@@ -114,13 +131,18 @@ async function handleEvent(event) {
         case 'awaiting_confirmation':
             if (event.message.type === 'text') {
                 if (event.message.text === 'ส่ง') {
-                    const { title, content, image_url, category } = userState.data;
+                    // <<< 4. เพิ่ม album_url ลงใน query
+                    const { title, content, image_url, category, album_url } = userState.data;
+                    
+                    // เพิ่มการตรวจสอบค่า album_url ก่อนส่ง
+                    const final_album_url = (album_url && (album_url.startsWith('http') || album_url.startsWith('https'))) ? album_url : null;
+                    
                     await db.query(
-                        'INSERT INTO posts (title, content, image_url, category) VALUES (?, ?, ?, ?)',
-                        [title, content, image_url, category]
+                        'INSERT INTO posts (title, content, image_url, category, album_url) VALUES (?, ?, ?, ?, ?)',
+                        [title, content, image_url, category, final_album_url]
                     );
                     conversationState.delete(userId); // ล้างสถานะ
-                    return client.replyMessage(event.replyToken, { type: 'text', text: 'บันทึกข่าวสารลงในระบบเรียบร้อยแล้ว!' });
+                    return client.replyMessage(event.replyToken, { type: 'text', text: 'บันทึกข่าวสารลงในระบบเรียบร้อยแล้ว! ตรวจสอบที่เว็บไซต์ได้เลยครับ' });
                 } else if (event.message.text === 'ไม่ส่ง') {
                     conversationState.delete(userId); // ล้างสถานะ
                     return client.replyMessage(event.replyToken, { type: 'text', text: 'ยกเลิกการบันทึกข้อมูลแล้วครับ' });

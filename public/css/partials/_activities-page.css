@@ -34,3 +34,24 @@
     font-size: 0.9rem;
     color: #6c757d;
 }
+
+.btn-album {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+}
+
+.btn-album:hover {
+    background-color: #001f36;
+}
+
+.card-footer > div {
+    display: flex;
+    align-items: center;
+}

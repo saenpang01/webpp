@@ -69,8 +69,7 @@
 #goals {
     position: relative;
     padding: 5rem 0;
-    /* แก้ไข Path ให้ถูกต้อง อ้างอิงจาก root ของ server */
-    background-image: url('/public/images/goals01.jpg');
+    background-image: url('/images/goals01.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

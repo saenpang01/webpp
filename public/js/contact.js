@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = 'กำลังส่งข้อมูล...';
 
         const formData = {
+            reporter_name: document.getElementById('reporter_name').value, // <-- เพิ่ม
+            reporter_phone: document.getElementById('reporter_phone').value, // <-- เพิ่ม
             report_type: document.getElementById('report_type').value,
             details: document.getElementById('details').value,
             latitude: latitudeInput.value,

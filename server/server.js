@@ -44,6 +44,9 @@ const authMiddleware = basicAuth({ users, challenge: true });
 // ทำให้โฟลเดอร์ uploads และ /admin เข้าถึงได้
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use('/admin', authMiddleware, express.static(path.join(__dirname, '../public'))); // ให้ยังคงเข้า admin.html ได้
+// === เพิ่มบรรทัดนี้ ===
+app.use('/', express.static(path.join(__dirname, '../public')));
+// ====================
 
 // API Routes อื่นๆ
 app.post('/api/upload', authMiddleware, upload.single('imageFile'), (req, res) => {

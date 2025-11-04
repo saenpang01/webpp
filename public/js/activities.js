@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchAndDisplayActivities() {
         try {
+            // เราใช้ URL เต็มเพื่อให้ทำงานได้ถูกต้อง
             const response = await fetch('http://localhost:3001/api/posts');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const posts = await response.json();
 
-            // Clear loading message
             activitiesGrid.innerHTML = '';
 
             if (posts.length === 0) {
@@ -22,15 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const card = document.createElement('div');
                 card.className = 'news-card';
 
-                // Format date
                 const postDate = new Date(post.created_at).toLocaleDateString('th-TH', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                 });
 
-                // Limit content length
                 const excerpt = post.content.length > 100 ? post.content.substring(0, 100) + '...' : post.content;
+
+                // === 1. สร้างปุ่มอัลบั้ม (ถ้ามีลิงก์) ===
+                let albumButton = '';
+                if (post.album_url) {
+                    albumButton = `<a href="${post.album_url}" class="btn-album" target="_blank">ดูอัลบั้มเต็ม</a>`;
+                }
 
                 card.innerHTML = `
                     <img src="${post.image_url}" alt="${post.title}">
@@ -42,7 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div class="card-footer">
                             <span class="news-date">${postDate}</span>
-                            <a href="#" class="read-more">อ่านต่อ</a>
+                            <div>
+                                ${albumButton} <a href="#" class="read-more">อ่านต่อ</a>
+                            </div>
                         </div>
                     </div>
                 `;

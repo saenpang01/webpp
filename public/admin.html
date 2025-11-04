@@ -3,38 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>ระบบจัดการข่าวสาร</title>
-    <style>
-        /* CSS ง่ายๆ เพื่อให้อ่านง่าย */
-        body { font-family: sans-serif; max-width: 900px; margin: auto; padding: 20px; }
-        form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding: 20px; border: 1px solid #ccc; }
-        input, textarea { padding: 8px; font-size: 1rem; }
-        button { padding: 10px; cursor: pointer; }
-        ul { list-style: none; padding: 0; }
-        li { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <h1>ระบบจัดการข่าวสาร</h1>
+<body class="admin-body"> <div class="admin-container">
+        <a href="/reports-admin.html" class="admin-nav-link">
+            ไปหน้าดูเรื่องร้องเรียน
+        </a>
+        <h1>ระบบจัดการข่าวสาร</h1>
 
-    <form id="post-form">
-        <h2 id="form-title">เพิ่มข่าวใหม่</h2>
-        <input type="hidden" id="post-id">
-        <input type="text" id="title" placeholder="หัวข้อข่าว" required>
-        <textarea id="content" placeholder="เนื้อหา" rows="5" required></textarea>
-        
-        <label for="imageFile">รูปภาพประกอบ:</label>
-        <input type="file" id="imageFile">
-        
-        <input type="hidden" id="image_url">
+        <form id="post-form" class="admin-form">
+            <h2 id="form-title">เพิ่มข่าวใหม่</h2>
+            <input type="hidden" id="post-id">
+            <input type="text" id="title" placeholder="หัวข้อข่าว" required>
+            <textarea id="content" placeholder="เนื้อหา" rows="5" required></textarea>
+            
+            <label for="imageFile">รูปภาพประกอบ:</label>
+            <input type="file" id="imageFile">
+            <input type="hidden" id="image_url">
 
-        <input type="text" id="category" placeholder="หมวดหมู่" required>
-        <button type="submit">บันทึก</button>
-        <button type="button" id="cancel-edit" style="display:none;">ยกเลิกการแก้ไข</button>
-    </form>
+            <input type="text" id="category" placeholder="หมวดหมู่" required>
+            <button type="submit" class="admin-btn btn-submit">บันทึก</button>
+            <button type="button" id="cancel-edit" class="admin-btn btn-secondary" style="display:none;">ยกเลิกการแก้ไข</button>
+        </form>
 
-    <h2>รายการข่าวทั้งหมด</h2>
-    <ul id="posts-list">
-        </ul>
+        <h2>รายการข่าวทั้งหมด</h2>
+        <ul id="posts-list" class="admin-list">
+            </ul>
+    </div>
 
     <script src="js/admin.js"></script>
 </body>

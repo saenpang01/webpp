@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ระบบดูเรื่องร้องเรียน</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body"> <div class="admin-container">
+        <a href="/admin/admin.html" class="admin-nav-link">กลับหน้าจัดการข่าว</a>
+        <h1>ระบบดูเรื่องร้องเรียน</h1>
+        
+        <table id="reports-table" class="admin-table">
+            <thead>
+                <tr>
+                    <th>วันที่</th>
+                    <th>ผู้แจ้ง</th>
+                    <th>เบอร์โทร</th>
+                    <th>ประเภท</th>
+                    <th class="col-details">รายละเอียด</th>
+                    <th>พิกัด (คลิกดู)</th>
+                </tr>
+            </thead>
+            <tbody id="reports-list">
+                <tr>
+                    <td colspan="6" style="text-align: center;">กำลังโหลดข้อมูล...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="/js/reports-admin.js"></script>
+</body>
+</html>
