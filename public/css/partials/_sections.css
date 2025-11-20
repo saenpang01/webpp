@@ -132,28 +132,36 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
-.district-card {
+.district-card, .news-card {
     background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 16px; /* มุมโค้งมนขึ้น */
+    border: none; /* ลบเส้นขอบเดิมออก */
+    box-shadow: var(--card-shadow); /* ใช้เงาที่ตั้งไว้ใน base */
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
-.district-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+.district-card:hover, .news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
-.district-card img {
+.district-card img, .news-card img {
     width: 100%;
-    height: 200px;
+    height: 220px; /* ปรับความสูงให้เท่ากัน */
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
+
+.district-card:hover img, .news-card:hover img {
+    transform: scale(1.05); /* ซูมภาพเข้า 5% */
+}
+
 .card-content {
     padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: #fff;
+    position: relative;
+    z-index: 2; /* ให้เนื้อหาอยู่เหนือรูป */
 }
+
 .card-content h3 {
     font-size: 1.25rem;
     color: var(--secondary-color);
@@ -193,19 +201,20 @@
     flex-grow: 1;
 }
 .news-category {
+    background-color: rgba(255, 106, 19, 0.1); /* พื้นหลังสีส้มจางๆ */
+    color: var(--primary-color);
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
     display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--text-light);
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
-.news-card h3 {
-    font-size: 1.25rem;
-    color: var(--secondary-color);
-    margin-bottom: 0.5rem;
+
+.news-card h3, .district-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
 }
 .news-excerpt {
     font-size: 0.95rem;

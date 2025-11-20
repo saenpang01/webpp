@@ -16,10 +16,14 @@ header {
 }
 
 .navbar.scrolled {
-    background-color: var(--primary-color);
-    padding: 1rem 0;
+    /* ใช้สี Secondary แต่โปร่งแสง 90% */
+    background-color: rgba(0, 43, 73, 0.85); 
+    /* เพิ่มเอฟเฟกต์เบลอพื้นหลัง (Glassmorphism) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.8rem 0;
     position: fixed;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* เงาฟุ้งๆ */
     width: 100%;
     top: 0;
     left: 0;
@@ -54,6 +58,7 @@ header {
 }
 
 .nav-link {
+    position: relative;
     color: var(--text-light);
     text-decoration: none;
     font-weight: 500;
@@ -65,6 +70,22 @@ header {
 .nav-link:hover, .nav-link.active {
     background-color: var(--primary-color);
     color: var(--text-light);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+    left: 0;
 }
 
 .dropdown-menu {

@@ -3,22 +3,23 @@
    ========================================================================== */
 .btn {
     display: inline-block;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 2.5rem; /* ปรับ Padding ให้ปุ่มยาวขึ้น */
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 600;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px; /* ทำให้ปุ่มมนเป็นแคปซูล */
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animation นุ่มๆ */
+    border: none; /* ลบขอบ */
 }
 
 .btn-hero-primary {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), #FF9057);
     color: var(--text-light);
     border: none;
     padding: 1rem 2.5rem;
     font-size: 1.2rem;
-    box-shadow: 0 5px 15px rgba(255, 106, 19, 0.4);
+    box-shadow: 0 10px 20px rgba(255, 106, 19, 0.3); /* เงาสีส้มฟุ้งๆ */
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -42,18 +43,15 @@
 
 .btn-hero-primary:hover {
     background-color: var(--accent-color);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 106, 19, 0.6);
+    transform: translateY(-3px) scale(1.02); /* ขยายและลอยขึ้นนิดนึง */
+    box-shadow: 0 15px 30px rgba(255, 106, 19, 0.4);
 }
 
 .btn-card {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .btn-card:hover {

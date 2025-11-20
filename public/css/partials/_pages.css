@@ -72,7 +72,8 @@
     color: var(--tertiary-color);
 }
 .form-group input[type="text"],
-.form-group select,
+.form-group input[type="tel"], /* <-- เพิ่มช่องเบอร์โทร */
+.form-group select,            /* <-- เพิ่ม Dropdown */
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
@@ -80,6 +81,7 @@
     border-radius: 5px;
     font-size: 1rem;
     font-family: 'Kanit', sans-serif;
+    box-sizing: border-box; /* <-- (สำคัญมาก) เพิ่มตัวนี้เพื่อคุมขนาดให้แม่นยำ */
 }
 #get-location-btn {
     width: 100%;
