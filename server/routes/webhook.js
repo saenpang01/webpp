@@ -1,8 +1,8 @@
 const express = require('express');
 const line = require('@line/bot-sdk');
 const db = require('../db');
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs'); // *** FIX: Comment out fs ***
+// const path = require('path'); // *** FIX: Comment out path ***
 
 const router = express.Router();
 
@@ -16,33 +16,14 @@ const client = new line.Client(config);
 // State Management: ใช้สำหรับจดจำว่า User แต่ละคนคุยถึงขั้นตอนไหนแล้ว
 const conversationState = new Map();
 
+// *** FIX: COMMENT OUT ฟังก์ชันที่พยายามเขียนลง Disk ***
 // ฟังก์ชันสำหรับดาวน์โหลดและบันทึกรูปภาพ
 const saveImageFromLine = async (messageId) => {
-    try {
-        const stream = await client.getMessageContent(messageId);
-        const filename = `${Date.now()}.jpg`;
-        // แก้ไข Path ให้ถูกต้อง อ้างอิงจากโฟลเดอร์ server/ ไปยัง ../uploads/
-        const uploadsDir = path.join(__dirname, '../../uploads'); 
-        const filePath = path.join(uploadsDir, filename);
-
-        // สร้างโฟลเดอร์ uploads หากยังไม่มี
-        if (!fs.existsSync(uploadsDir)) {
-            fs.mkdirSync(uploadsDir, { recursive: true });
-        }
-
-        const writable = fs.createWriteStream(filePath);
-        stream.pipe(writable);
-
-        return new Promise((resolve, reject) => {
-            stream.on('end', () => resolve(`/uploads/${filename}`));
-            stream.on('error', reject);
-        });
-    } catch (error) {
-        console.error('ไม่สามารถบันทึกรูปภาพได้:', error);
-        throw error;
-    }
+    // เนื่องจาก Render ไม่อนุญาตให้เขียนไฟล์ลง Disk โดยตรง
+    // เราจะส่ง URL ชั่วคราวกลับไปแทน
+    console.log('--- WARNING: LINE image saving is disabled on Render. Using placeholder URL. ---');
+    return `/temp_image/${messageId}.jpg`; // Placeholder URL
 };
-
 
 // ฟังก์ชันหลักสำหรับจัดการ Event
 async function handleEvent(event) {
@@ -80,8 +61,11 @@ async function handleEvent(event) {
 
         case 'awaiting_image':
             if (event.message.type === 'image') {
-                const imageUrl = await saveImageFromLine(event.message.id);
-                userState.data.image_url = imageUrl;
+                // *** FIX: ใช้ URL ชั่วคราวแทนการบันทึกไฟล์ ***
+                // const imageUrl = await saveImageFromLine(event.message.id);
+                // userState.data.image_url = imageUrl;
+                userState.data.image_url = `/temp_image/${event.message.id}.jpg`; // ใช้ ID รูปเป็น Placeholder
+                
                 userState.state = 'awaiting_category';
                 return client.replyMessage(event.replyToken, { type: 'text', text: 'รูปสวยมาก! "หมวดหมู่" ของข่าวคืออะไรครับ? เช่น ลงพื้นที่,ประชุม,กิจกรรม ' });
             } else {
@@ -92,12 +76,13 @@ async function handleEvent(event) {
         case 'awaiting_category':
             if (event.message.type === 'text') {
                 userState.data.category = event.message.text;
-                userState.state = 'awaiting_album_link'; // <<< 1. เปลี่ยน state ถัดไป
+                userState.state = 'awaiting_album_link'; 
                 return client.replyMessage(event.replyToken, { type: 'text', text: 'สุดท้ายนี้ กรุณาส่ง "ลิงก์อัลบั้มเต็ม" (Google Drive/Photos) ครับ\n(หากไม่มี ให้พิมพ์ "ข้าม")' });
             }
             break;
 
-        // <<< 2. เพิ่ม State ใหม่สำหรับรับลิงก์
+        // ... โค้ด awaiting_album_link และ awaiting_confirmation เหมือนเดิม ...
+        
         case 'awaiting_album_link':
             if (event.message.type === 'text') {
                 if (event.message.text.toLowerCase() === 'ข้าม' || event.message.text.toLowerCase() === 'skip') {
@@ -113,7 +98,7 @@ async function handleEvent(event) {
 - เนื้อหา: ${userState.data.content.substring(0, 50)}...
 - รูปภาพ: (อัปโหลดแล้ว)
 - หมวดหมู่: ${userState.data.category}
-- ลิงก์อัลบั้ม: ${userState.data.album_url || 'ไม่มี'}`; // <<< 3. เพิ่มลิงก์ในสรุป
+- ลิงก์อัลบั้ม: ${userState.data.album_url || 'ไม่มี'}`; 
 
                 return client.replyMessage(event.replyToken, {
                     type: 'text',
@@ -131,20 +116,18 @@ async function handleEvent(event) {
         case 'awaiting_confirmation':
             if (event.message.type === 'text') {
                 if (event.message.text === 'ส่ง') {
-                    // <<< 4. เพิ่ม album_url ลงใน query
                     const { title, content, image_url, category, album_url } = userState.data;
                     
-                    // เพิ่มการตรวจสอบค่า album_url ก่อนส่ง
                     const final_album_url = (album_url && (album_url.startsWith('http') || album_url.startsWith('https'))) ? album_url : null;
                     
                     await db.query(
                         'INSERT INTO posts (title, content, image_url, category, album_url) VALUES (?, ?, ?, ?, ?)',
                         [title, content, image_url, category, final_album_url]
                     );
-                    conversationState.delete(userId); // ล้างสถานะ
+                    conversationState.delete(userId); 
                     return client.replyMessage(event.replyToken, { type: 'text', text: 'บันทึกข่าวสารลงในระบบเรียบร้อยแล้ว! ตรวจสอบที่เว็บไซต์ได้เลยครับ' });
                 } else if (event.message.text === 'ไม่ส่ง') {
-                    conversationState.delete(userId); // ล้างสถานะ
+                    conversationState.delete(userId); 
                     return client.replyMessage(event.replyToken, { type: 'text', text: 'ยกเลิกการบันทึกข้อมูลแล้วครับ' });
                 }
             }

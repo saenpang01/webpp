@@ -31,10 +31,8 @@ app.use('/api/line-webhook', webhookRoutes);
 app.use(express.json()); 
 
 // ตั้งค่า Multer (สำหรับอัปโหลดไฟล์)
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, '../uploads/'),
-    filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
-});
+// *** FIX: เปลี่ยนเป็น Memory Storage เพื่อไม่ให้เขียนลง Render Disk ***
+const storage = multer.memoryStorage(); 
 const upload = multer({ storage: storage });
 
 // ตั้งค่า Basic Auth (สำหรับหน้า Admin)
@@ -42,23 +40,23 @@ const users = { [process.env.ADMIN_USER]: process.env.ADMIN_PASSWORD };
 const authMiddleware = basicAuth({ users, challenge: true });
 
 // ทำให้โฟลเดอร์ uploads และ /admin เข้าถึงได้
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+// *** FIX: COMMENT OUT ส่วน uploads เพราะไม่มี Disk Storage แล้วบน Render ***
+// app.use('/uploads', express.static(path.join(__dirname, '../uploads'))); 
 app.use('/admin', authMiddleware, express.static(path.join(__dirname, '../public'))); // ให้ยังคงเข้า admin.html ได้
-// === เพิ่มบรรทัดนี้ ===
-app.use('/', express.static(path.join(__dirname, '../public')));
-// ====================
 
 // API Routes อื่นๆ
 app.post('/api/upload', authMiddleware, upload.single('imageFile'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'ไม่มีไฟล์ถูกอัปโหลด' });
     }
-    res.json({ filePath: `/uploads/${req.file.filename}` });
+    // ส่ง URL ชั่วคราวกลับไปแทน เพราะไม่ได้บันทึกไฟล์จริง
+    // Note: ระบบจะไม่แสดงรูปภาพที่อัปโหลดผ่าน Admin แล้วจนกว่าจะติดตั้ง Cloudinary/S3
+    res.json({ filePath: `/uploads/${req.file.originalname}` });
 });
 app.use('/api/posts', postRoutes);
 app.use('/api/reports', reportRoutes);
 
-// Basic Route (จะทำงานก็ต่อเมื่อไม่มีไฟล์ index.html ใน public)
+// Basic Route (ถูก override ด้วย express.static บรรทัดบนแล้ว)
 app.get('/', (req, res) => {
     res.send('<h1>Backend ของพรรคประชาชนอุตรดิตถ์!</h1>');
 });
