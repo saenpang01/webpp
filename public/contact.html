@@ -4,81 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ติดต่อ/แจ้งเหตุ - พรรคประชาชนอุตรดิตถ์</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <header>
-        <nav class="navbar scrolled"> <div class="container">
+        <nav class="navbar scrolled">
+            <div class="container">
                 <a href="/index.html" class="nav-logo">LOGO <span>ประชาชนอุตรดิตถ์</span></a>
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="/index.html" class="nav-link">หน้าแรก</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">ข้อมูลพรรค</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link active">ติดต่อ/แจ้งเหตุ</a></li>
+                    <li class="nav-item"><a href="/about.html" class="nav-link">ข้อมูลพรรค</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">ข้อมูลจังหวัดอุตรดิตถ์ ▼</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/muang.html">อ.เมืองอุตรดิตถ์</a></li>
+                            <li><a href="/tron.html">อ.ตรอน</a></li>
+                            <li><a href="/thapla.html">อ.ท่าปลา</a></li>
+                            <li><a href="/nampad.html">อ.น้ำปาด</a></li>
+                            <li><a href="/faktha.html">อ.ฟากท่า</a></li>
+                            <li><a href="/bankhok.html">อ.บ้านโคก</a></li>
+                            <li><a href="/pichai.html">อ.พิชัย</a></li>
+                            <li><a href="/laplae.html">อ.ลับแล</a></li>
+                            <li><a href="/thongsaenkhan.html">อ.ทองแสนขัน</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="/activities.html" class="nav-link">กิจกรรมของพรรค</a></li>
+                    <li class="nav-item"><a href="/contact.html" class="nav-link active">ติดต่อ/แจ้งเหตุ</a></li>
                 </ul>
-                </div>
+                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            </div>
         </nav>
     </header>
 
     <main>
         <section class="page-header">
             <div class="container">
-                <h1>ติดต่อ / แจ้งเหตุ</h1>
-                <p>แจ้งเรื่องร้องเรียน หรือปัญหาความเดือดร้อนในพื้นที่ของคุณ</p>
+                <h1>แจ้งเหตุ / ติดต่อ</h1>
+                <p>ช่องทางหลักในการรับเรื่องร้องเรียนและประสานงาน</p>
             </div>
         </section>
 
         <section class="contact-form-section">
             <div class="container">
-                <form id="report-form" class="report-form">
-                   
-                    <div id="form-status" class="form-status-message" style="display: none;"></div>
-                    <h2>กรอกข้อมูลเพื่อแจ้งเหตุ</h2>
-                    <div id="form-status" class="form-status-message" style="display: none;"></div>
-
-                    <div class="form-group">
-                        <label for="reporter_name">ชื่อผู้แจ้ง</label>
-                        <input type="text" id="reporter_name" name="reporter_name" placeholder="กรอกชื่อ-สกุล ของคุณ" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reporter_phone">เบอร์โทรติดต่อกลับ</label>
-                        <input type="tel" id="reporter_phone" name="reporter_phone" placeholder="กรอกเบอร์โทรศัพท์ (สำหรับประสานงาน)" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="report_type">ประเภทเรื่อง</label>
-                        <select id="report_type" name="report_type" required>
-                    <div class="form-group">
-                        <label for="report_type">ประเภทเรื่อง</label>
-                        <select id="report_type" name="report_type" required>
-                            <option value="">-- กรุณาเลือก --</option>
-                            <option value="โครงสร้างพื้นฐาน (ถนน, ไฟฟ้า, ประปา)">โครงสร้างพื้นฐาน (ถนน, ไฟฟ้า, ประปา)</option>
-                            <option value="สิ่งแวดล้อม (ขยะ, น้ำเสีย)">สิ่งแวดล้อม (ขยะ, น้ำเสีย)</option>
-                            <option value="ความปลอดภัย">ความปลอดภัย</option>
-                            <option value="อื่นๆ">อื่นๆ</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="details">รายละเอียดของปัญหา</label>
-                        <textarea id="details" name="details" rows="6" placeholder="อธิบายปัญหาที่ท่านพบเจอโดยละเอียด..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>พิกัดตำแหน่ง (จำเป็น)</label>
-                        <button type="button" id="get-location-btn">📍 ค้นหาพิกัดปัจจุบัน</button>
-                        <p id="location-status" class="location-status"></p>
-                        <input type="hidden" id="latitude" name="latitude">
-                        <input type="hidden" id="longitude" name="longitude">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" id="submit-btn">ส่งเรื่อง</button>
-                </form>
+                <div class="line-contact-box">
+                    <h2>แจ้งเหตุ/ร้องเรียนผ่าน LINE</h2>
+                    <p>
+                        เพื่อความสะดวกรวดเร็วในการติดตามปัญหา และส่งข้อมูลภาพถ่าย/พิกัด
+                        <br>
+                        กรุณาคลิกปุ่มด้านล่างเพื่อเพิ่มเพื่อนและเริ่มต้นการแจ้งเหตุได้ทันที
+                    </p>
+                    <a href="https://lin.ee/9U5X7ZU" target="_blank" class="btn btn-line">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/LINE_logo.svg/2048px-LINE_logo.svg.png" alt="LINE Logo">
+                        เพิ่มเพื่อนและแจ้งปัญหา
+                    </a>
+                    <p class="small-text">หรือค้นหา ID: @uttaradit (มี @ ด้วย)</p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        </footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column about">
+                    <h4>พรรคประชาชนอุตรดิตถ์</h4>
+                    <p>
+                        มุ่งมั่นพัฒนาอุตรดิตถ์<br>
+                        ยกระดับคุณภาพชีวิต<br>
+                        เพื่ออนาคตที่ดีกว่าของทุกคน
+                    </p>
+                </div>
+                <div class="footer-column links">
+                    <h4>ลิงก์ด่วน</h4>
+                    <ul>
+                        <li><a href="/index.html">หน้าแรก</a></li>
+                        <li><a href="/about.html">ข้อมูลพรรค</a></li>
+                        <li><a href="/activities.html">กิจกรรมของพรรค</a></li>
+                        <li><a href="/contact.html">ติดต่อ/แจ้งเหตุ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column social">
+                    <h4>ติดตามเรา</h4>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/uttprogressive">Facebook</a>
+                        <a href="https://lin.ee/9U5X7ZU">LINE</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 พรรคประชาชนอุตรดิตถ์. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <script src="js/contact.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

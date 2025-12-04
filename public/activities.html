@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>กิจกรรมพรรค | พรรคประชาชนอุตรดิตถ์</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>ปฏิทินกิจกรรม | พรรคประชาชนอุตรดิตถ์</title> <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
@@ -42,24 +41,31 @@
     <main>
         <section class="page-header">
             <div class="container">
-                <h1>ข่าวสารและกิจกรรม</h1>
-                <p>ติดตามความเคลื่อนไหวล่าสุดจากพรรคประชาชนอุตรดิตถ์</p>
-            </div>
+                <h1>ปฏิทินและกิจกรรม</h1> <p>กิจกรรมที่กำลังจะมาถึง และข้อมูลเชิงลึก</p> </div>
         </section>
 
         <section class="activities-section">
             <div class="container">
-                <div id="activities-grid" class="news-grid">
-                    <p class="loading-message">กำลังโหลดกิจกรรมล่าสุด...</p>
+                <div class="calendar-layout">
+                    
+                    <div class="main-event-card" id="main-event-card">
+                        <p class="loading-message">กำลังโหลดปฏิทินกิจกรรม...</p>
+                        </div>
+
+                    <div class="calendar-list-container">
+                        <h3 class="list-title">รายการกิจกรรมที่กำลังจะถึง</h3>
+                        <div class="calendar-list" id="calendar-list">
+                            <p>โปรดรอสักครู่...</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                </div>
         </section>
     </main>
     
     <footer>
         </footer>
 
-    <script src="/js/activities.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="/js/calendar-activity.js"></script> <script src="/js/script.js"></script>
 </body>
 </html>
