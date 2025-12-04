@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ปฏิทินกิจกรรม | พรรคประชาชนอุตรดิตถ์</title> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>ปฏิทินและกิจกรรม | พรรคประชาชนอุตรดิตถ์</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
@@ -41,31 +42,69 @@
     <main>
         <section class="page-header">
             <div class="container">
-                <h1>ปฏิทินและกิจกรรม</h1> <p>กิจกรรมที่กำลังจะมาถึง และข้อมูลเชิงลึก</p> </div>
+                <h1>ปฏิทินและกิจกรรม</h1>
+                <p>ตารางกิจกรรมที่กำลังจะมาถึง และประมวลภาพกิจกรรมที่ผ่านมา</p>
+            </div>
         </section>
 
         <section class="activities-section">
             <div class="container">
+                
+                <h2 class="section-title" style="text-align:left; margin-bottom:1.5rem;">📅 ปฏิทินกิจกรรม (Upcoming)</h2>
                 <div class="calendar-layout">
-                    
                     <div class="main-event-card" id="main-event-card">
                         <p class="loading-message">กำลังโหลดปฏิทินกิจกรรม...</p>
-                        </div>
-
+                    </div>
                     <div class="calendar-list-container">
-                        <h3 class="list-title">รายการกิจกรรมที่กำลังจะถึง</h3>
+                        <h3 class="list-title">เร็วๆ นี้</h3>
                         <div class="calendar-list" id="calendar-list">
                             <p>โปรดรอสักครู่...</p>
                         </div>
                     </div>
                 </div>
+
+                <hr style="margin: 4rem 0; border: 0; border-top: 1px solid #ddd;">
+
+                <h2 class="section-title" style="text-align:left; margin-bottom:1.5rem;">📸 กิจกรรมที่ดำเนินการแล้ว (Past Activities)</h2>
+                <div id="past-activities-grid" class="news-grid">
+                    <p class="loading-message">กำลังโหลดกิจกรรม...</p>
                 </div>
+
+            </div>
         </section>
     </main>
     
     <footer>
-        </footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column about">
+                    <h4>พรรคประชาชนอุตรดิตถ์</h4>
+                    <p>มุ่งมั่นพัฒนาอุตรดิตถ์ ยกระดับคุณภาพชีวิต เพื่ออนาคตที่ดีกว่าของทุกคน</p>
+                </div>
+                <div class="footer-column links">
+                    <h4>ลิงก์ด่วน</h4>
+                    <ul>
+                        <li><a href="/index.html">หน้าแรก</a></li>
+                        <li><a href="/about.html">ข้อมูลพรรค</a></li>
+                        <li><a href="/activities.html">กิจกรรมของพรรค</a></li>
+                        <li><a href="/contact.html">ติดต่อ/แจ้งเหตุ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column social">
+                    <h4>ติดตามเรา</h4>
+                    <div class="social-icons">
+                        <a href="#">Facebook</a>
+                        <a href="#">LINE</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 พรรคประชาชนอุตรดิตถ์. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <script src="/js/calendar-activity.js"></script> <script src="/js/script.js"></script>
+    <script src="/js/calendar-activity.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

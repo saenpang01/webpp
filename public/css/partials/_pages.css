@@ -123,3 +123,67 @@
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+
+/* Contact Page Styles */
+.contact-form-section {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+}
+
+.line-contact-box {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.line-contact-box h2 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.line-contact-box p {
+    font-size: 1.1rem;
+    color: var(--tertiary-color);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* *** FIX: ปรับขนาดปุ่มและโลโก้ LINE *** */
+.btn-line {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00B900;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 185, 0, 0.2);
+}
+
+.btn-line:hover {
+    background-color: #009900;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 185, 0, 0.4);
+}
+
+.btn-line img {
+    width: 28px !important;  /* บังคับขนาด */
+    height: 28px !important; /* บังคับขนาด */
+    object-fit: contain;
+    margin-right: 12px;
+}
+
+.line-contact-box .small-text {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 1.5rem;
+}

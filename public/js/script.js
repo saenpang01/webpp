@@ -28,32 +28,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }));
     }
 
-    // ========== 3. Fetch and Display News Posts ==========
+    // ========== 3. Fetch News for Home Page (From Database) ==========
     const newsGrid = document.querySelector(".news-grid");
-    if (newsGrid) {
-        // *** แก้ไขตรงนี้: เปลี่ยนเป็น Relative Path ***
-        fetch('http://localhost:3001/api/posts') 
+    // ทำงานเฉพาะเมื่อเจอ .news-grid (หน้าแรก) และไม่มี id="past-activities-grid" (หน้ากิจกรรม)
+    if (newsGrid && !document.getElementById('past-activities-grid')) {
+        fetch('/api/posts') // เรียก API ดึงข้อมูลจากฐานข้อมูล
             .then(response => response.json())
             .then(posts => {
                 newsGrid.innerHTML = ''; 
-                posts.forEach(post => {
+                
+                // ตัดมาแค่ 3 ข่าวล่าสุด
+                const recentPosts = posts.slice(0, 3);
+
+                if (recentPosts.length === 0) {
+                    newsGrid.innerHTML = '<p style="width:100%; text-align:center;">ยังไม่มีข่าวสารประชาสัมพันธ์</p>';
+                    return;
+                }
+
+                recentPosts.forEach(post => {
+                    // จัดรูปแบบวันที่
+                    const postDate = new Date(post.created_at).toLocaleDateString('th-TH', {
+                        day: 'numeric', month: 'short', year: '2-digit'
+                    });
+                    
+                    // ใช้รูปจาก LINE หรือรูป Default
+                    const imageUrl = post.image_url || '/images/goals01.jpg';
+
                     const postElement = document.createElement('div');
                     postElement.classList.add('news-card');
                     postElement.innerHTML = `
-                        <img src="${post.image_url}" alt="${post.title}">
+                        <div style="height: 200px; overflow: hidden;">
+                            <img src="${imageUrl}" alt="${post.title}" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
                         <div class="card-content">
-                            <span class="news-category">${post.category}</span>
-                            <h3>${post.title}</h3>
-                            <p class="news-excerpt">${post.content.substring(0, 100)}...</p>
-                            <a href="#" class="read-more">อ่านต่อ &rarr;</a>
+                            <span class="news-category">${post.category || 'กิจกรรม'}</span>
+                            <h3 style="margin-top:0.5rem; font-size:1.1rem;">${post.title}</h3>
+                            <p style="font-size:0.9rem; color:#888; margin-bottom:0.5rem;">📅 ${postDate}</p>
+                            <p class="news-excerpt">${post.content.substring(0, 80)}${post.content.length > 80 ? '...' : ''}</p>
+                            ${post.album_url ? `<a href="${post.album_url}" target="_blank" class="read-more">ดูอัลบั้มเต็ม &rarr;</a>` : ''}
                         </div>
                     `;
                     newsGrid.appendChild(postElement);
                 });
             })
             .catch(error => {
-                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลข่าวสาร:', error);
-                newsGrid.innerHTML = '<p>ไม่สามารถโหลดข้อมูลข่าวสารได้ในขณะนี้</p>';
+                console.error('Error fetching posts:', error);
+                newsGrid.innerHTML = '<p>ไม่สามารถโหลดข้อมูลข่าวสารได้</p>';
             });
     }
 
@@ -83,6 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             path.addEventListener("click", () => {
+                // ลิงก์ไปยังหน้าอำเภอ (ถ้ามี)
+                // location.href = `/${districtName}.html`; 
                 alert(`คุณคลิกที่: ${districtName}`);
             });
         });
