@@ -1,0 +1,150 @@
+/* public/css/admin.css */
+
+/* 1. Reset & Variables เฉพาะหน้า Admin */
+:root {
+    --primary: #FF6A13; /* สีส้มพรรค */
+    --dark: #2D3748;
+    --light: #F4F7F6;
+    --white: #ffffff;
+    --danger: #e74c3c;
+    --success: #2ecc71;
+    --sidebar-width: 250px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sarabun', 'Kanit', sans-serif;
+    background: var(--light);
+    margin: 0;
+    padding: 0;
+    display: flex; /* ใช้ Flexbox เพื่อจัด Sidebar คู่ Content */
+    min-height: 100vh;
+    overflow-x: hidden; /* ป้องกันสกรอลแนวนอน */
+}
+
+/* 2. Sidebar Layout */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--secondary-color, #002B49); /* สีน้ำเงินเข้ม */
+    color: var(--white);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+}
+
+.menu a:hover, .menu a.active {
+    background: var(--primary);
+    color: white;
+}
+
+.menu a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* 3. Main Content Layout */
+.main-content {
+    margin-left: var(--sidebar-width); /* เว้นที่ให้ Sidebar */
+    flex-grow: 1;
+    padding: 30px;
+    width: calc(100% - var(--sidebar-width));
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+/* 4. Cards & Grid */
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+/* 5. Responsive Styles สำหรับ Admin */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px; /* ย่อ Sidebar */
+        padding: 15px 5px;
+    }
+    
+    .sidebar h2, .menu a span {
+        display: none; /* ซ่อนข้อความ เหลือแต่ไอคอน */
+    }
+    
+    .menu a {
+        justify-content: center;
+    }
+    
+    .menu a i {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+}
