@@ -1,6 +1,11 @@
 // ไฟล์: server/calendarService.js
 const { google } = require('googleapis');
 
+// --- เพิ่ม 2 บรรทัดนี้เพื่อเช็คค่า ---
+console.log("--> DEBUG: กำลังใช้ ID:", process.env.GOOGLE_CALENDAR_ID);
+console.log("--> DEBUG: กำลังใช้ KEY:", process.env.GOOGLE_API_KEY ? "มีค่า (ซ่อนไว้)" : "ไม่มีค่า");
+// --------------------------------
+
 // ดึงค่า ID และ Key จาก Environment Variables
 const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID;
 

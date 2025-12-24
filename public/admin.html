@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการ - พรรคประชาชนอุตรดิตถ์</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2><i class="fas fa-vote-yea"></i> Admin</h2>
+        <nav class="menu">
+            <a href="#" class="active"><i class="fas fa-home"></i> <span>ภาพรวม</span></a>
+            <a href="#"><i class="fas fa-newspaper"></i> <span>ข่าวกิจกรรม</span></a>
+            <a href="#"><i class="fas fa-users"></i> <span>สมาชิกพรรค</span></a>
+            <div class="divider"></div>
+            <a href="/" target="_blank" class="view-site"><i class="fas fa-external-link-alt"></i> <span>ดูหน้าเว็บจริง</span></a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>จัดการข่าวกิจกรรม</h1>
+            <a href="#" class="btn-add" onclick="alert('ฟีเจอร์นี้จะเชื่อมกับ API ในอนาคต')">
+                <i class="fas fa-plus"></i> เพิ่มกิจกรรมใหม่
+            </a>
+        </div>
+
+        <div class="activity-grid" id="admin-posts-container">
+            <p style="color:#888;">กำลังโหลดข้อมูล...</p>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>
